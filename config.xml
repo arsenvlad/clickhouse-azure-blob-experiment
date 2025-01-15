@@ -1,0 +1,70 @@
+<clickhouse>
+    <logger>
+        <level>trace</level>
+        <console>true</console>
+    </logger>
+
+    <http_port>8123</http_port>
+    <tcp_port>9000</tcp_port>
+    <mysql_port>9004</mysql_port>
+
+    <path>./</path>
+
+    <mlock_executable>true</mlock_executable>
+
+    <users>
+        <default>
+            <password/>
+
+            <networks>
+                <ip>::/0</ip>
+            </networks>
+
+            <profile>default</profile>
+            <quota>default</quota>
+
+            <access_management>1</access_management>
+            <named_collection_control>1</named_collection_control>
+        </default>
+    </users>
+
+    <profiles>
+        <default/>
+    </profiles>
+
+    <quotas>
+        <default/>
+    </quotas>
+
+    <query_log>
+        <database>system</database>
+        <table>query_log</table>
+        <flush_interval_milliseconds>10000</flush_interval_milliseconds>
+    </query_log>
+
+    <query_metric_log>
+        <database>system</database>
+        <table>query_metric_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <collect_interval_milliseconds>1000</collect_interval_milliseconds>
+        <max_size_rows>1048576</max_size_rows>
+        <reserved_size_rows>8192</reserved_size_rows>
+        <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
+        <flush_on_crash>false</flush_on_crash>
+    </query_metric_log>
+
+    <storage_configuration>
+        <disks>
+            <blob_storage_disk>
+                <type>azure_blob_storage</type>
+                <storage_account_url>https://avstoragestandard1.blob.core.windows.net</storage_account_url>
+                <container_name>clickhouse-storage</container_name>
+                <account_name>avstoragestandard1</account_name>
+                <account_key></account_key>
+                <metadata_path>/clickhouse-experiment/disks/blob_storage_disk/</metadata_path>
+                <cache_path>/clickhouse-experiment/disks/blob_storage_disk/cache/</cache_path>
+                <skip_access_check>false</skip_access_check>
+            </blob_storage_disk>
+        </disks>
+    </storage_configuration>
+</clickhouse>
