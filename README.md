@@ -58,8 +58,10 @@ Insert 10M rows into the test table by executing the following SQL command in th
 
 Cause spike in connections to storage and consequent RST packets by executing the following SQL command in the ClickHouse client (vary max_threads to make it even more aggressive, but larger values can OOMKill the server)
 
-While the command is running in the client watch the number of connections to the storage account IPs and/or the number of RST packets in the tcpdump output
-
 ```sql
 select count(*) from test_wide where col100 like '2000%' or col99 like 'col99_2%' or col96 like '%col96_%' group by a, b, c, d, e, f, col7 limit 10 settings max_threads = 45;
 ```
+
+While the command is running in the client watch the number of connections to the storage account IPs and/or the number of RST packets in the tcpdump output
+
+![tcpdump-rests](./images/tcpdump-rst.png)
